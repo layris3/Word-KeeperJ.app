@@ -1,0 +1,72 @@
+<div class="container" [formGroup]="addWordForm">
+  <h2>Add New Word</h2>
+
+  <div class="row  py-2 ">
+    <div class="col-2">
+      <label for="wordName">Word:</label>
+      <input type="text" class="form-control" formControlName="wordName" placeholder="Enter word">
+    </div>
+    <div class="col-2">
+      <label for="pronunciation">Pronunciation:</label>
+      <input type="text" class="form-control" formControlName="pronunciation" placeholder="Enter pronunciation">
+    </div>
+    <div class="col-2">
+      <label for="category">category:</label>
+      <input type="text" class="form-control" formControlName="category" placeholder="Enter category">
+    </div>
+    <div class="col-2">
+      <label for="chapter">chapter:</label>
+      <input type="text" class="form-control" formControlName="chapter" placeholder="Enter chapter">
+    </div>
+  </div>
+
+  <div class="py-2">
+    <button type="button" class="btn btn-success" (click)="addMeaning()">Add Meaning</button>
+  </div>
+  <ng-container formArrayName="meanings">
+    <ng-container *ngFor="let meaningForm of meanings.controls;let i=index">
+      <div class="row py-2" [formGroupName]="i">
+        <div class="col-2">
+          <label for="type">Type:</label>
+          <input type="text" class="form-control" formControlName="type" placeholder="Enter type">
+        </div>
+        <div class="col-4">
+          <label for="meaning">Meaning:</label>
+          <input type="text" class="form-control" formControlName="meaning" placeholder="Enter meaning">
+        </div>
+        <div class="col-2 d-flex align-items-end">
+          <button class="btn btn-secondary " (click)="deleteMeaning(i)">delete</button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div>
+    <button type="button" class="btn btn-warning" (click)="addSentence()">Add Sentence</button>
+  </div>
+  <ng-container formArrayName="sentences">
+    <ng-container *ngFor="let sentenceForm of sentences.controls;let i = index">
+      <div class="row justify-content-center py-2" [formGroupName]="i">
+        <div class="col-5">
+          <label for="content">Content:</label>
+          <input type="text" class="form-control" formControlName="content" placeholder="Enter content">
+        </div>
+        <div class="col-5">
+          <label for="chinese">Chinese:</label>
+          <input type="text" class="form-control" formControlName="chinese" placeholder="Enter chinese">
+        </div>
+        <div class="col-2 d-flex align-items-end">
+          <button class="btn btn-secondary " (click)="deleteSentence(i)">delete</button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div class="row justify-content-center">
+    <button class="col-3 btn btn-primary" [class.disabled]="addWordForm.status!=='VALID'"
+      (click)="submit()">Submit</button>
+  </div>
+
+</div>
+
+<app-toast aria-live="polite" aria-atomic="true"></app-toast>

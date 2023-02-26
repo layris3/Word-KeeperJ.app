@@ -1,0 +1,38 @@
+<div *ngIf="word" class="px-4 pt-5 my-5 text-center border-bottom">
+
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="col-4"></div>
+        <div class="h1 display-4 fw-bold col-4" (click)="showWordDetail()">
+            <a routerLink="./" class="text-decoration-none text-dark" >
+                {{word.wordName}}
+            </a>
+            <i *ngIf="word.isImportant === 'Y'" class="bi bi-star-fill"></i>
+        </div>
+        <div class="col-4">
+            <a routerLink="/modify/{{word.wordName}}" class="text-decoration-none text-muted" title="modify">
+                <i class="bi bi-pencil-fill h5"></i>
+            </a>
+        </div>
+    </div>
+
+    <a routerLink="./">
+        <i class="h2 bi bi-volume-up" (click)="playSound()"></i>
+    </a>
+    <div *ngIf="!isShowDetail">
+        <br> <br>
+    </div>
+    <div class="col-lg-12 mx-auto">
+        <div *ngIf="isShowDetail">
+            <p class="lead mb-4">{{word.pronunciation}}</p>
+            <div class="text-align">
+                <p *ngFor="let m of word.meanings" class="lead mb-4">{{m.type}} {{m.content}}</p>
+                <p *ngFor="let s of word.sentences" class="lead mb-4">{{s.content}} {{s.chinese}}</p>
+            </div>
+        </div>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+            <button type="button" class="btn btn-success btn-lg px-4 me-sm-3" (click)="know()">Know it</button>
+            <button type="button" class="btn btn-warning btn-lg px-4 me-sm-3" (click)="nextWord()">Not Sure</button>
+            <button type="button" class="btn btn-secondary btn-lg px-4" (click)="nextWord()">Forgot</button>
+        </div>
+    </div>
+</div>

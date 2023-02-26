@@ -1,0 +1,28 @@
+<div class="container">
+  <header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a [routerLink]="['/']" class="nav-link" [class.active]="active === 1" (click)="navClick(1,true)">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/add-new" class="nav-link" [class.active]="active === 2" (click)="navClick(2,true)">Add New</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link" [class.active]="active === 3"
+          (click)="navClick(3,!isSearchBarCollapsed)">Search</a>
+      </li>
+    </ul>
+  </header>
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isSearchBarCollapsed">
+    <div class="card">
+      <div class="card-body">
+        <label for="searchWord" class="form-label">Search Word</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="searchWord" placeholder="" value="" required="">
+          <button class="btn-primary">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
