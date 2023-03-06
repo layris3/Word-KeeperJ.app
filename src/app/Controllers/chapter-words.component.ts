@@ -6,7 +6,7 @@ import { switchMap } from 'rxjs';
 @Component({
   selector: 'app-chapter-words',
   template: `
-  <ng-container *ngIf="!isFinished">
+  <ng-container *ngIf="!isFinished && this.currentWord">
     <app-word [word]="currentWord" (goToNextWord)="nextWord()" (knowIt)="knowIt()"></app-word>
   </ng-container>
   <div *ngIf="isFinished">
