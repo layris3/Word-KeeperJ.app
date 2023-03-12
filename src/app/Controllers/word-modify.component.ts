@@ -133,7 +133,7 @@ export class WordModifyComponent implements OnInit, OnDestroy {
     let word = this.serializeWord();
     this.wordService.updateWord(word).subscribe({
       next: () => {
-        this.toastService.showSuccess('Added successfully!')
+        this.toastService.showSuccess('Modify successfully!')
       },
       error: err => {
         this.toastService.showDanger('Something wrong,please try again!');
